@@ -6,6 +6,7 @@ import { PrismaSessionStore } from '@quixo3/prisma-session-store'
 import { PrismaClient } from '@prisma/client'
 import path from 'path'
 import authRoutes from './routes/authRoutes.js'
+import storageRoutes from './routes/storageRoutes.js'
 import passportConfig from './config/passport.js'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -43,14 +44,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // Authentication routes
 app.use('/auth', authRoutes)
-
-// Middleware to check if user is authenticated
-const isAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next()
-  }
-  res.redirect('/auth/login')
-}
+// Storage routes
+app.use('/storage', storageRoutes)
 
 // Home route
 app.get('/', (req, res) => {
