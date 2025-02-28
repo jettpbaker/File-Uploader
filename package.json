@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch --env-file=.env app.js",
-    "migrate": "npx prisma migrate deploy"
+    "migrate": "npx prisma migrate deploy",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
