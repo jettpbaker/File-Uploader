@@ -41,6 +41,11 @@ export const postLogin = (req, res, next) => {
 }
 
 export const postLogout = (req, res) => {
-  req.logout()
-  res.redirect('/')
+  req.logout((err) => {
+    if (err) {
+      console.err(err)
+      return next(err)
+    }
+    res.redirect('/')
+  })
 }
