@@ -4,7 +4,6 @@ export const getHomePage = async (req, res) => {
   let files = []
   try {
     if (req.isAuthenticated()) {
-      // Get user's files if authenticated
       files = await getFiles(req.user.id)
 
       res.render('home', {
@@ -12,10 +11,7 @@ export const getHomePage = async (req, res) => {
         files,
       })
     } else {
-      res.render('home', {
-        user: null,
-        files,
-      })
+      res.render('login')
     }
   } catch (error) {
     console.error('Error fetching home page:', error)
