@@ -182,6 +182,11 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.file-name a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
 .file-name {
   font-weight: 500;
   margin-bottom: 0.25rem;
