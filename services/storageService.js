@@ -3,7 +3,7 @@ import path from 'path'
 
 export const addFile = async (file, userId) => {
   const name = path.parse(file.originalname).name
-  const size = Math.max(file.size / 1024 / 1024, 1)
+  const size = Math.floor(Math.max(file.size / 1024 / 1024, 1))
 
   await prisma.file.create({
     data: {

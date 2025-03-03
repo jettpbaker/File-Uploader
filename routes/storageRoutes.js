@@ -5,6 +5,7 @@ const router = express.Router()
 
 // Get routes
 router.get('/upload', fileController.getUpload)
+router.get('/download/:id', fileController.getDownload)
 
 // Post routes
 router.post('/upload', fileController.postUploadFile)
