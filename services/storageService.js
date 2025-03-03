@@ -3,10 +3,12 @@ import path from 'path'
 
 export const addFile = async (file, userId) => {
   const name = path.parse(file.originalname).name
+  const size = Math.max(file.size / 1024 / 1024, 1)
 
   await prisma.file.create({
     data: {
       name,
+      size,
       location: file.path,
       owner: {
         connect: {
@@ -15,6 +17,32 @@ export const addFile = async (file, userId) => {
       },
     },
   })
+}
+
+export const deleteFile = async (fileId) => {
+  await prisma.file.delete({
+    where: {
+      id: fileId,
+    },
+  })
+}
+
+export const getFiles = async (userId) => {
+  const files = await prisma.file.findMany({
+    where: {
+      ownerId: userId,
+    },
+  })
+  return files
+}
+
+export const getFileById = async (fileId) => {
+  const file = await prisma.file.findUnique({
+    where: {
+      id: fileId,
+    },
+  })
+  return file
 }
 
 // model File {

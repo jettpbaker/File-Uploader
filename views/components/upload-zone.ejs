@@ -1,0 +1,8 @@
+<div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+  <i class="ri-upload-cloud-2-line" style="font-size: 2rem; color: var(--primary-color)"></i>
+  <h3>Drop files here or click to upload</h3>
+  <p style="color: #6b7280; margin-top: 0.5rem">Maximum file size: 300MB</p>
+  <form action="/storage/upload" method="post" enctype="multipart/form-data" style="display: none">
+    <input type="file" id="fileInput" name="file" onchange="this.form.submit()" />
+  </form>
+</div>

@@ -8,5 +8,5 @@ router.get('/upload', fileController.getUpload)
 
 // Post routes
 router.post('/upload', fileController.postUploadFile)
-
+router.post('/delete/:id', fileController.postDeleteFile)
 export default router
