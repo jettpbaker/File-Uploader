@@ -5,7 +5,9 @@
       <button type="submit" class="btn btn-danger"><i class="ri-delete-bin-line"></i></button>
     </form>
   </div>
-  <h3 class="file-name"><%= file.name %></h3>
+  <h3 class="file-name">
+    <a href="/storage/file/<%= file.id %>" class="file-name-button"><%= file.name %></a>
+  </h3>
   <p class="file-info">
     <span><%= file.size %> MB</span>
   </p>

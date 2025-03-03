@@ -11,6 +11,14 @@ export const getUpload = (req, res, next) => {
   res.render('upload')
 }
 
+export const getFile = async (req, res, next) => {
+  const id = Number(req.params.id)
+  const file = await getFileById(id)
+
+  const pathLocation = path.join(__dirname, '../uploads', path.basename(file.location))
+  res.sendFile(pathLocation)
+}
+
 export const getDownload = async (req, res, next) => {
   const id = Number(req.params.id)
   const file = await getFileById(id)
