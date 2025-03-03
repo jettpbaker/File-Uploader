@@ -3,11 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>FileVault - Your Files</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
   </head>
   <body>
-    <h1>Home</h1>
-    <a href="/auth/logout">Logout</a>
-    <a href="/storage/upload">Upload</a>
+    <nav class="navbar">
+      <div class="navbar-content">
+        <a href="/" class="logo">FileVault</a>
+        <div class="nav-links">
+          <% if (user) { %>
+          <a href="/storage/upload"><i class="ri-upload-2-line"></i> Upload</a>
+          <a href="/auth/logout"><i class="ri-logout-box-line"></i> Logout</a>
+          <% } else { %>
+          <a href="/auth/login">Sign In</a>
+          <a href="/auth/signup">Sign Up</a>
+          <% } %>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <% if (user) { %> <%- include('./components/upload-zone') %> <% if (files && files.length > 0) { %>
+      <div class="file-grid">
+        <% files.forEach(function(file) { %> <%- include('./components/file-card', { file }) %> <% }); %>
+      </div>
+      <% } else { %>
+      <div class="empty-state">
+        <i class="ri-folder-line" style="font-size: 3rem; color: var(--primary-color)"></i>
+        <h2>No files yet</h2>
+        <p>Upload your first file to get started</p>
+        <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+          <i class="ri-upload-2-line"></i> Upload a File
+        </button>
+      </div>
+      <% } %> <% } else { %>
+      <div class="auth-container" style="text-align: center; margin-top: 4rem">
+        <h1>Welcome to FileVault</h1>
+        <p style="margin-bottom: 2rem; color: #6b7280">Your secure personal cloud storage solution</p>
+        <a href="/auth/login" class="btn btn-primary" style="margin-right: 1rem">Sign In</a>
+        <a
+          href="/auth/signup"
+          class="btn btn-primary"
+          style="background-color: white; color: var(--primary-color); border: 1px solid var(--primary-color)"
+          >Create Account</a
+        >
+      </div>
+      <% } %>
+    </div>
   </body>
 </html>

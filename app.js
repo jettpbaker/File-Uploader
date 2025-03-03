@@ -7,6 +7,7 @@ import { PrismaClient } from '@prisma/client'
 import path from 'path'
 import authRoutes from './routes/authRoutes.js'
 import storageRoutes from './routes/storageRoutes.js'
+import pageRoutes from './routes/pageRoutes.js'
 import passportConfig from './config/passport.js'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -46,15 +47,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/auth', authRoutes)
 // Storage routes
 app.use('/storage', storageRoutes)
-
-// Home route
-app.get('/', (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render('home')
-  } else {
-    res.redirect('/auth/signup')
-  }
-})
+// Page routes (including home)
+app.use('/', pageRoutes)
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000')

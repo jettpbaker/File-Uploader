@@ -3,13 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Upload</title>
+    <title>Upload - FileVault</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
   </head>
   <body>
-    <h1>Upload</h1>
-    <form action="/storage/upload" method="post" enctype="multipart/form-data">
-      <input type="file" name="file" />
-      <button type="submit">Upload</button>
-    </form>
+    <nav class="navbar">
+      <div class="navbar-content">
+        <a href="/" class="logo">FileVault</a>
+        <div class="nav-links">
+          <a href="/"><i class="ri-home-line"></i> Home</a>
+          <a href="/auth/logout"><i class="ri-logout-box-line"></i> Logout</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="auth-container">
+        <h1>Upload File</h1>
+        <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+          <i class="ri-upload-cloud-2-line" style="font-size: 3rem; color: var(--primary-color)"></i>
+          <h3>Drop files here or click to upload</h3>
+          <p style="color: #6b7280; margin-top: 0.5rem">Maximum file size: 300MB</p>
+          <form action="/storage/upload" method="post" enctype="multipart/form-data" style="display: none">
+            <input type="file" id="fileInput" name="file" onchange="this.form.submit()" />
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

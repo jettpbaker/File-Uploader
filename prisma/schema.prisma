@@ -28,6 +28,7 @@ model User {
 model File {
   id        Int   @id @default(autoincrement())
   name      String
+  size      BigInt    // bytes
   location  String
   createdAt DateTime @default(now())
   owner      User     @relation(fields: [ownerId], references: [id])
